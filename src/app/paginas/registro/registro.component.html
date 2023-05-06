@@ -7,14 +7,18 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
-    <link href="../login/login.component.css" rel="stylesheet">
+    <link href="../registro/registro.component.css" rel="stylesheet">
   </head>
   <body class="text-center">
     <main class="form-signin"><br>
       <div class="rounded container bg-light"> <br>
         <form>
           <img class="mb-4" src="../assets/videojuegos.png" alt="" width="40%" height="40%">
-          <h1 class="h3 mb-3 fw-normal">¡Hola!</h1>
+          <h1 class="h3 mb-3 fw-normal">Registro</h1>
+          <div class="form-floating">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Nombre</label>
+          </div>
           <div class="form-floating">
             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email</label>
@@ -23,12 +27,8 @@
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Contraseña</label>
           </div>
-          <button class="w-100 btn btn-lg btn-warning" type="submit">Entrar</button>
-          <p></p>
-          <button class="w-100 btn btn-sm btn-secondary" type="submit">Acceso rápido</button>
-          <p></p>
-          <label class="sm-2 col-form-label">¿No tienes cuenta? <a routerLink="/registro">Regístrate</a></label>
-          <br>
+          <button class="w-100 btn btn-lg btn-warning" type="submit">Grabar</button>
+          <p><br></p>
         </form>
       </div>
       </main>
