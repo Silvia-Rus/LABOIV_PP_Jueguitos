@@ -1,0 +1,9 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+html,
+body {
+    background-size: auto;
+    background-position: absolute; 
+    background: url(assets/_fondo2.jpg);
+}
+
