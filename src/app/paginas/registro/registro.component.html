@@ -12,19 +12,19 @@
   <body class="text-center">
     <main class="form-signin"><br>
       <div class="rounded container bg-light"> <br>
-        <form>
+        <form (ngSubmit)="crearUsuario()" [formGroup]="nuevoUsuario" >
           <img class="mb-4" src="../assets/videojuegos.png" alt="" width="40%" height="40%">
           <h1 class="h3 mb-3 fw-normal">Registro</h1>
           <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" formControlName="nombre" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Nombre</label>
           </div>
           <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email"  formControlName="mail" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email</label>
           </div>
           <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password"  formControlName="contrasena" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Contraseña</label>
           </div>
           <button class="w-100 btn btn-lg btn-warning" type="submit">Grabar</button>

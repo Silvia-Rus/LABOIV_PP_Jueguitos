@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { initializeApp } from "firebase/app";
 import { AngularFireModule  } from "@angular/fire/compat";
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // páginas
 import { HomeComponent } from './paginas/home/home.component';
 import { LoginComponent } from './paginas/login/login.component';
@@ -44,6 +44,9 @@ const firebaseConfig = {
     HttpClientModule,
     NgbModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
