@@ -53,24 +53,10 @@ export class StorageService {
 
   }
 
-  getNombre(mail: string)
+  getNombre(mail: any)
   {
-    firebase
-    .firestore()
-    .collection(this.coleccion)
-    .where('mail', '==',mail)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const nombre = doc.get("nombre");
-        console.log(doc.get("nombre"));
-       console.log(doc.data()["nombre"]);
-       return nombre;
-      });
-    })
-    .catch((error) => {
-      console.log('Error buscando: ', error);
-    });  }
+    return this.db.collection(this.coleccion , ref => ref.where("mail", "==", mail)).snapshotChanges();
+  }
 
   grabarLog(mail: string)
   {

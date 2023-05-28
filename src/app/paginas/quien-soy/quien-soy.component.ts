@@ -17,20 +17,17 @@ export class QuienSoyComponent implements OnInit {
     location: '',
     avatar_url: '',
   };
+  srcFoto = '';
 
   ngOnInit(): void {
     this.http.get('https://api.github.com/users/silvia-rus')
              .subscribe((rsp: any) => {
       this.data = rsp;
-      this.setImage(rsp.avatar_url);
+      this.srcFoto = rsp.avatar_url;
       console.log(rsp);
     });
   }
 
-  setImage(url: any) {
-    var perfil = document.getElementById("img") as HTMLImageElement;
-    perfil.src = url;
-  }
 }
 
 

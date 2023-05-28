@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { StorageService } from 'src/app/servicios/storage.service';
+
 
 
 @Component({
@@ -19,6 +21,4 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.auth.logout();
   }
-
-
 }

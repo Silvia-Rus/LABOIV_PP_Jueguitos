@@ -16,6 +16,9 @@ import { RegistroComponent } from './paginas/registro/registro.component';
 // componentes
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { HomeJuegosComponent } from './paginas/home-juegos/home-juegos.component';
+import { AhorcadoComponent } from './paginas/home-juegos/ahorcado/ahorcado.component';
+import { TecladoComponent } from './componentes/teclado/teclado.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdb_2sjAeTxACUYIitJ_EC_1ntf_M7qdM",
@@ -36,7 +39,9 @@ const firebaseConfig = {
     RegistroComponent,
     NavbarComponent,
     FooterComponent,
-    
+    HomeJuegosComponent,
+    AhorcadoComponent,
+    TecladoComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,8 +52,10 @@ const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, 
+    // KeyboardEvent,
   ],
-  providers: [],
+  providers: [TecladoComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,7 +20,6 @@ export class RegistroComponent implements OnInit {
                   contrasena:['', Validators.required],
                   })
                }
-
   ngOnInit() {
   }
 

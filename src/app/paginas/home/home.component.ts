@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   quieroJugar(){
     this.auth.getAuth().subscribe(user => {
-      user?.email ? this.router.navigate(['/home']) : this.router.navigate(['/login'])
+      user?.email ? this.router.navigate(['/home-juegos']) : this.router.navigate(['/login'])
     });
   }
 }
