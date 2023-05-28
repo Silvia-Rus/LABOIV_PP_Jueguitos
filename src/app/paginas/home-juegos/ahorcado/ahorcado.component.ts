@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ReCaptchaEnterpriseProvider } from 'firebase/app-check';
 import { PalabrasService } from 'src/app/servicios/palabras.service'
 import { AlertService } from 'src/app/servicios/alert.service';
 
@@ -22,7 +21,7 @@ export class AhorcadoComponent implements OnInit {
   intentos = 0;
   intentosRestantes = 6;
   srcAhorcado = "../assets/ahorcado/Paso_"+this.intentos+".png";
-  
+
   ngOnInit() {
     this.nuevaPalabra();
   }
@@ -64,7 +63,7 @@ export class AhorcadoComponent implements OnInit {
         this.intentos += 1;
         this.intentosRestantes -= 1;
         this.setImage(this.intentos);
-        if(this.perdio()){this.alerta.lanzarAlertaError("Te quedaste sin intentos. Vuelve a jugar.")}
+        if(this.perdio()){this.alerta.lanzarAlertaError("Te quedaste sin intentos. La palabra era "+this.palabra+".")}
       }
       else
       {

@@ -1,0 +1,48 @@
+
+<br><br> 
+<div class="container rounded bg-light py-3">
+  <header>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">¿Mayor o menor?</h1>
+      <p class="fs-5 text-muted">Adivina si la próxima carta será mayor o menor</p>
+      <h4 class="my-0 fw-normal">Puntos: {{puntos}}</h4>
+    </div>
+  </header>
+  <main>
+    <div class="row row-cols-1 row-cols-md-2 mb-2 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3 bg-warning">
+            <h4 class="my-0 fw-normal">Anterior</h4>
+          </div>
+          <div class="card-body">
+            <img src={{mostrarCartaVieja()}} alt="cardImg" width="max" height="250">
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3 bg-warning">
+            <h4 class="my-0 fw-normal">Actual</h4>
+          </div>
+          <div class="card-body">
+            <img src={{imagenCartaNueva}} alt="cardImg" width="max" height="250">
+          </div>
+        </div>
+      </div>
+      <div class="btn-group w-100" role="group" aria-label="Basic example">
+        <button type="button" class="w-100 btn btn-lg btn-danger" (click)="elegirOpcion('menor')">
+          Menor
+          <i class="bi bi-arrow-down-circle"></i>
+        </button>
+        <button type="button" class="w-100 btn btn-lg btn-secondary"(click)="elegirOpcion('mayor')">
+          Mayor
+          <i class="bi bi-arrow-up-circle"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+

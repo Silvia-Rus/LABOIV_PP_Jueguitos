@@ -13,12 +13,15 @@ import { HomeComponent } from './paginas/home/home.component';
 import { LoginComponent } from './paginas/login/login.component';
 import { QuienSoyComponent } from './paginas/quien-soy/quien-soy.component';
 import { RegistroComponent } from './paginas/registro/registro.component';
+import { HomeJuegosComponent } from './paginas/home-juegos/home-juegos.component';
+import { AhorcadoComponent } from './paginas/home-juegos/ahorcado/ahorcado.component';
+
 // componentes
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { FooterComponent } from './componentes/footer/footer.component';
-import { HomeJuegosComponent } from './paginas/home-juegos/home-juegos.component';
-import { AhorcadoComponent } from './paginas/home-juegos/ahorcado/ahorcado.component';
 import { TecladoComponent } from './componentes/teclado/teclado.component';
+import { CommonModule } from '@angular/common';
+import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-menor.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdb_2sjAeTxACUYIitJ_EC_1ntf_M7qdM",
@@ -42,6 +45,7 @@ const firebaseConfig = {
     HomeJuegosComponent,
     AhorcadoComponent,
     TecladoComponent,
+    MayorMenorComponent    
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, 
+    CommonModule,
     // KeyboardEvent,
   ],
   providers: [TecladoComponent],
