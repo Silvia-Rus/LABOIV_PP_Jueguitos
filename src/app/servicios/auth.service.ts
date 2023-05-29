@@ -72,19 +72,19 @@ export class AuthService {
     return this.auth.authState;
   }
 
-  currentUserEmail(){
-    this.getAuth().subscribe((user) => {
-      console.log(user);
-      if(user)
-      {
-        return user.email;
-      }
-      else
-      {
-        return null;
-      }
-    });
-  }
+  // currentUserEmail(){
+  //   this.getAuth().subscribe((user) => {
+  //     console.log(user);
+  //     if(user)
+  //     {
+  //       return user.email;
+  //     }
+  //     else
+  //     {
+  //       return null;
+  //     }
+  //   });
+  // }
 }
 
 

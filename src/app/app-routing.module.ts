@@ -8,6 +8,7 @@ import { RegistroComponent } from './paginas/registro/registro.component';
 import { HomeJuegosComponent } from './paginas/home-juegos/home-juegos.component';
 import { AhorcadoComponent } from './paginas/home-juegos/ahorcado/ahorcado.component';
 import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-menor.component';
+import { ChatComponent } from './paginas/chat/chat.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'home-juegos', component: HomeJuegosComponent },
   { path: 'ahorcado', component: AhorcadoComponent },
   { path: 'mayor-menor', component: MayorMenorComponent },
+  { path: 'chat', component: ChatComponent },
+
 
 ];
 

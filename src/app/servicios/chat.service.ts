@@ -1,30 +1,27 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
-import { AuthService } from './auth.service';
-import { Message } from 'src/app/interfaces/message';
-
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { Message } from "../interfaces/message";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChatService {
 
+export class ChatService {
   private itemsCollection?: AngularFirestoreCollection<any>;
   public chats: Message[] = [];
-  public user: any = {};
+  public userLog: any = {};
   elements: any;
 
-  constructor(private authService: AuthService,
-              private afs: AngularFirestore) {
+  constructor(private authService: AuthService, private afs: AngularFirestore) {
     this.authService.getAuth().subscribe(user => {
       if (user) {
-        this.user.name = user.displayName;
-        this.user.uid = user.uid;
-        this.user.email = user.email;
+        this.userLog.name = user.displayName;
+        this.userLog.uid = user.uid;
+        this.userLog.email = user.email;
       }
-
     });
-    }
+  }
 
   loadMessages() {
     this.itemsCollection = this.afs.collection<Message>('chats', ref => ref.orderBy('date', 'desc').limit(20));
@@ -33,24 +30,33 @@ export class ChatService {
       for (let chat of chats) {
         this.chats.unshift(chat);
       }
-      setTimeout(() => {
-        this.elements = document.getElementById('app-message');
-      }, 20);
+      this.elements = document.getElementById('app-message');
+      if (this.elements != null) {
+        this.elements.scrollTop = this.elements.scrollHeight;
+      }
     });
   }
 
   addMessage(message: string) {
     let newMessage: Message = {
-      name: this.user.name,
+      name: this.userLog.name,
       message: message,
       date: this.formatDate(new Date()),
-      email: this.user.email,
+      uid: this.userLog.uid,
+      email: this.userLog.email
     };
 
     return this.itemsCollection?.add(newMessage);
   }
 
+  dateComponentPad = (value: string) => {
+    var format = value;
+    return format.length < 2 ? '0' + format : format;
+  }
+
   formatDate = (date: any) => {
-    return date.toLocaleString()
+    let datePart = [date.getDate(), date.getMonth() + 1, date.getFullYear()].map(this.dateComponentPad);
+    let timePart = [date.getHours(), date.getMinutes(), date.getSeconds()].map(this.dateComponentPad);
+    return datePart.join('-') + ' ' + timePart.join(':');
   }
 }
