@@ -1,20 +1,60 @@
-<div class="rounded container bg-light">
-
-<div class="chat">
-    <div class="chat-window">
-        <h3>Chat</h3>
-        <hr>
-        <div class="app-message" id="app-message">
-            <div *ngFor="let chat of chatService.chats" [ngClass]="{'text-right': chatService.userLog.uid == chat.uid,
-            'text-left': chatService.userLog.uid != chat.uid}">
-            <span class="badge" [ngClass]="{'bg-success': chatService.userLog.uid == chat.uid,
-            'bg-primary': chatService.userLog.uid != chat.uid}">{{chat.email}}</span>
-            <p>{{chat.message}}</p>
-            <span class="date">{{chat.date}}</span>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- <div class="container bootstrap snippets bootdey"> -->
+  <br> <br> <br> <br>
+  <div class="rounded container px-3 py-5">
+    <div class="row">
+      <div class="rounded col-md-8 bg-white ">
+        <div class=" border-bottom padding-sm" style="height: 40px;">
+          <h4>Chat</h4>
         </div>
-    </div>
-</div>
-<input type="text" name="message" [(ngModel)]="message" (keyup.enter)="sendMessage()" class="form-control"
-id="app-message-input" placeholder="Escribe tu mensaje...">
-</div>
+            <div class="chat-message">
+                <ul class="chat">                  
+                  <div *ngFor="let chat of chatService.chats" >
+                       <!-- EL OTRO  -->
+                    <div *ngIf="chatService.userLog.uid != chat.uid; else then_content">
+                      <li class="left clearfix">
+                        <span class="chat-img pull-left">
+                          <img src="../assets/astronauta2.png" width="40" height="32" alt="User Avatar">
+                        </span>
+                        <div class="chat-body clearfix">
+                          <div class="header">
+                            <strong class="primary-font">
+                              {{chat.email}}
+                            </strong>
+                            <small class="pull-right text-muted"><i class="fa fa-clock-o"></i>{{chat.date}}
+                            </small>
+                          </div>
+                          <p>{{chat.message}}</p>
+                        </div>
+                      </li>
+                    </div>
+                    <ng-template #then_content>
+                    <!-- YO -->
+                    <li class="right clearfix">
+                    	<span class="chat-img pull-right">
+                    		<img src="../assets/amor.png" alt="User Avatar">
+                    	</span>
+                    	<div class="chat-body clearfix">
+                    		<div class="header">
+                    			<strong class="primary-font">Yo</strong>
+                    			<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> {{chat.date}}</small>
+                    		</div>
+                    		<p>{{chat.message}}</p>
+                    	</div>
+                    </li>
+                    </ng-template>
+                  </div>               
+                </ul>
+            </div>
+            <div class="chat-box bg-white">
+            	<div class="input-group">
+            		<input class="form-control border no-shadow no-rounded" placeholder="Escriba se mensaje" [(ngModel)]="message" (keyup.enter)="sendMessage()" >
+            		<span class="input-group-btn">
+            			<button class="btn btn-success no-rounded" [(ngModel)]="message" (click)="sendMessage()"
+                  type="button">Enviar</button>
+            		</span>
+              </div>            
+            	</div><!-- /input-group -->	
+		</div>        
+	</div>
 </div>
