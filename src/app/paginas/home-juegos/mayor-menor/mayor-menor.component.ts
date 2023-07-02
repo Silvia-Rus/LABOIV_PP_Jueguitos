@@ -1,6 +1,9 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { CartasService } from 'src/app/servicios/cartas.service';
 import { AlertService } from 'src/app/servicios/alert.service';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { StorageService } from 'src/app/servicios/storage.service';
+import { Encuesta} from 'src/app/clases/encuesta';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -14,11 +17,19 @@ export class MayorMenorComponent implements OnInit {
   valorCartaVieja = -1;
   imagenCartaVieja: any;
   puntos = 0;
+  logueado = this.auth.getAuth();
+  usuario: any;
 
-  constructor(private cartas: CartasService, private alerta: AlertService) { }
+
+  constructor(private cartas: CartasService, private alerta: AlertService, 
+              private auth: AuthService,
+              private st: StorageService) { }
 
   ngOnInit() {
     this.getCarta();
+    this.logueado.subscribe((res) => {
+      this.usuario = res?.email;
+      })
   }
 
   getCarta(){
@@ -44,9 +55,6 @@ export class MayorMenorComponent implements OnInit {
         break;
       case 'QUEEN':
         this.valorCartaNueva = 12;
-        break;
-      case 'KING':
-        this.valorCartaNueva = 13;
         break;
       case 'KING':
         this.valorCartaNueva = 13;
@@ -79,8 +87,10 @@ export class MayorMenorComponent implements OnInit {
     this.puntos++;
     this.alerta.lanzarAlertaExito("¡Acertaste! Sumás un punto más.");
   }
+
   pierde(){
     this.alerta.lanzarAlertaError("Perdiste la partida. Tus puntos fueron: "+this.puntos+".");
+    this.st.addPuntos(this.puntos, 'Mayor o Menor', this.usuario);
     this.puntos = 0;
   }
 

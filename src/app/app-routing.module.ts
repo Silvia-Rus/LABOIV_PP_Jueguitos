@@ -11,6 +11,8 @@ import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-menor.component';
 
 import { ChatComponent } from './paginas/chat/chat.component';
+import { RankingComponent } from './paginas/ranking/ranking.component';
+
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'mayor-menor', component: MayorMenorComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'encuesta', component: EncuestaComponent },
+  { path: 'ranking', component: RankingComponent },
+
 ];
 
 @NgModule({

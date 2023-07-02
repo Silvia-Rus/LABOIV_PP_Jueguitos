@@ -1,0 +1,58 @@
+<body>
+  <br>
+  <br>
+  <br>
+  <div class="container py-3">
+    <div class="p-4 mb-4 bg-light rounded-3">
+      <header>
+        <br>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+          <h1 class="display-4 fw-normal">Puntuación</h1>
+          <p class="fs-5 text-muted">Ranking</p>
+        </div>
+            <div class="d-flex justify-content-center btn-group" role="group">
+              <button type="button" class="btn btn-secondary" (click)="filtrar('Ahorcado')">Ahorcado</button>
+              <button type="button" class="btn btn-secondary" (click)="filtrar('Mayor o Menor')">Mayor o menor</button>
+              <button type="button" class="btn btn-secondary" (click)="filtrar('Preguntados')">Preguntados</button>
+              <button type="button" class="btn btn-secondary" (click)="filtrar('')">¿?</button>
+            </div>
+            <br>
+            <table class="table" style="width: 100%; align-self: center;">
+              <thead>
+                  <tr>
+                      <th>
+                        Juego
+                      </th>
+                      <th>
+                        Jugador
+                      </th>
+                      <th>
+                        Puntos
+                      </th>
+                      <th>
+                        Fecha
+                      </th>
+                  </tr>
+              </thead>
+              <tbody *ngFor="let item of listaItems">
+                  <tr *ngIf="this.filtro == item.juego">
+                      <td >
+                          {{item.juego}}
+                      </td>
+                      <td>
+                          {{item.jugador}}
+                      </td>
+                      <td>
+                          {{item.puntos}}
+                      </td>
+                      <td>
+                          {{item.fecha}}
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+
+      </header>
+    </div>
+  </div>
+</body>

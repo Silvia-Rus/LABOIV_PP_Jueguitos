@@ -47,9 +47,6 @@ export class TecladoComponent implements OnInit {
   onKeyPress = (button: string) => {
     console.log("Button pressed", button);
     this.letra.emit(button);
-    
-    //aquí debe ir el emit suponggggo
-  
 
     /**
      * If you want to handle the shift and caps lock buttons
@@ -61,13 +58,13 @@ export class TecladoComponent implements OnInit {
     this.keyboard.setInput(event.target.value);
   };
 
-  // handleShift = () => {
-  //   let currentLayout = this.keyboard.options.layoutName;
-  //   let shiftToggle = currentLayout === "default" ? "shift" : "default";
+  handleShift = () => {
+    let currentLayout = this.keyboard.options.layoutName;
+    let shiftToggle = currentLayout === "default" ? "shift" : "default";
 
-  //   this.keyboard.setOptions({
-  //     layoutName: shiftToggle
-  //   });
-  // };
+    this.keyboard.setOptions({
+      layoutName: shiftToggle
+    });
+  };
 
 }

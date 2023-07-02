@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-menor.component';
 import { ChatComponent } from './paginas/chat/chat.component';
 import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
+import { RankingComponent } from './paginas/ranking/ranking.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdb_2sjAeTxACUYIitJ_EC_1ntf_M7qdM",
@@ -49,7 +50,8 @@ const firebaseConfig = {
     TecladoComponent,
     MayorMenorComponent,
     ChatComponent,
-    EncuestaComponent  
+    EncuestaComponent,
+    RankingComponent 
   ],
   imports: [
     BrowserModule,

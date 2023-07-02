@@ -1,3 +1,130 @@
-<p>
-  encuesta works!
-</p>
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+<br>
+<br>
+<br>
+<div class="container bg-light rounded">
+<!-- animate__animated animate__backInRight"> -->
+  <main>
+    <div class="py-5 text-center">
+      <h2>Encuesta</h2>
+      <div class="row g-6">
+        <form [formGroup]="form" (ngSubmit)="submit()" class="needs-validation" novalidate>
+          <div class="row g-3"> 
+            <!-- nombre -->
+            <div class="col-sm-6">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input 
+                formControlName="nombre" 
+                type="text" 
+                class="form-control" 
+                id="nombre" 
+                placeholder="Nombre" 
+                value="" 
+                required>
+              <small class="errorMessage"
+                  *ngIf="getValue('nombre')?.invalid && (getValue('nombre').touched || getValue('nombre').dirty)">
+                Introduzca un nombre válido.
+              </small>
+            </div>
+            <!-- apellido -->
+            <div class="col-sm-6">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input 
+                formControlName="apellido" 
+                type="text" 
+                class="form-control" 
+                id="apellido" 
+                placeholder="Apellido" 
+                value="" 
+                required>
+              <small class="errorMessage"
+                  *ngIf="getValue('apellido')?.invalid && (getValue('apellido').touched || getValue('apellido').dirty)">
+                Introduzca un apellido válido.
+              </small>
+            </div>
+            <!-- edad -->
+            <div class="col-sm-6">
+              <label for="edad" class="form-label">Edad</label>
+              <input 
+                formControlName="edad" 
+                type="number" 
+                class="form-control" 
+                id="edad" 
+                placeholder="Edad" 
+                value="" 
+                required>
+              <small class="errorMessage"
+                  *ngIf="getValue('edad')?.invalid && (getValue('edad').touched || getValue('edad').dirty)">
+                Introduzca una edad válida.
+              </small>
+            </div>
+            <!-- telefono -->
+            <div class="col-sm-6">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input 
+                formControlName="telefono" 
+                type="tel" 
+                class="form-control" 
+                id="telefono" 
+                placeholder="Teléfono" 
+                value="" 
+                required>
+              <small class="errorMessage"
+                  *ngIf="getValue('telefono')?.invalid && (getValue('telefono').touched || getValue('telefono').dirty)">
+                Introduzca un teléfono válido.
+              </small>
+            </div>
+            <!-- calificación -->
+            <div class="col-sm-6">
+              <label for="calificacion" class="form-label">Calificación</label>
+              <br>
+              <select
+                  formControlName="calificacion" 
+                  id="calificacion"
+                  class="col-sm-6 btn btn-secondary dropdown-toggle btn-sm"  
+                  data-bs-toggle="dropdown">
+                  <option value="buena">Buena</option>
+                  <option value="regular">Regular</option>
+                  <option value="mala">Mala</option>              
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="recomendaria" class="form-label">¿Recomendarías la página?</label>
+              <br>
+              <div class="form-check form-check-inline">
+                <input formControlName="recomendaria" class="form-check-input" type="radio" name="recomendaria" id="si" value="si">
+                <label class="form-check-label" for="si">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input formControlName="recomendaria" class="form-check-input" type="radio" name="recomendaria" id="no" value="no">
+                <label class="form-check-label" for="no">No</label>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <label for="comentario" class="form-label">Otros comentarios</label>
+              <textarea
+                formControlName="comentario" 
+                type="txtarea" 
+                class="form-control" 
+                id="comentario" 
+                placeholder="Ingrese un comentario..." 
+                value="" 
+                required></textarea>
+              <small class="errorMessage"
+                  *ngIf="getValue('comentario')?.invalid && (getValue('comentario').touched || getValue('comentario').dirty)">
+                Introduzca un comentario válido.
+              </small>
+            </div>
+            <button class="btn btn-warning btn-lg" type="submit">Grabar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PalabrasService } from 'src/app/servicios/palabras.service'
 import { AlertService } from 'src/app/servicios/alert.service';
+import { StorageService } from 'src/app/servicios/storage.service';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 
 @Component({
@@ -10,20 +12,30 @@ import { AlertService } from 'src/app/servicios/alert.service';
 })
 export class AhorcadoComponent implements OnInit {
 
-  constructor(private servicio: PalabrasService, private alerta: AlertService) { }
+  constructor(private servicio: PalabrasService, 
+              private alerta: AlertService,
+              private auth: AuthService,
+              private st: StorageService) { }
 
   dato: any;
   palabra = '';
   palabraAux = '';
   letra = '';
+  letrasUsada: any[] = [];
   arrayPalabra: any;
   arrayPalabraAux: any;
   intentos = 0;
   intentosRestantes = 6;
+  usuario: any;
+  logueado = this.auth.getAuth();
   srcAhorcado = "../assets/ahorcado/Paso_"+this.intentos+".png";
+  puntos = -1;
 
   ngOnInit() {
     this.nuevaPalabra();
+    this.logueado.subscribe((res) => {
+      this.usuario = res?.email;
+      })
   }
 
   reset()
@@ -31,10 +43,17 @@ export class AhorcadoComponent implements OnInit {
     this.palabra = '';
     this.palabraAux = '';
     this.letra = '';
+    this.letrasUsada = [];
     this.intentos = 0;
     this.intentosRestantes = 6;
     this.setImage(this.intentos);
-    this.nuevaPalabra()
+    this.nuevaPalabra();
+    this.puntos = -1;
+  }
+
+  validadorLetra()
+  {
+
   }
 
   nuevaPalabra() {
@@ -54,23 +73,30 @@ export class AhorcadoComponent implements OnInit {
 
   setLetra(letra: string)
   {
-    this.letra = letra;
-    if(!this.ganoOPerdio())
-    {
-      console.log("llega aquí");
-      if(!this.arrayPalabra.includes(this.letra))
+    if(this.letrasUsada.includes(letra)){
+      this.alerta.lanzarAlertaError('Esta letra ya ha sido usada');
+    }else{
+      this.letra = letra;
+      this.letrasUsada.push(this.letra);
+      if(!this.ganoOPerdio())
       {
-        this.intentos += 1;
-        this.intentosRestantes -= 1;
-        this.setImage(this.intentos);
-        if(this.perdio()){this.alerta.lanzarAlertaError("Te quedaste sin intentos. La palabra era "+this.palabra+".")}
-      }
-      else
-      {
-        this.setPalabraAux();
-        if(this.gano()){this.alerta.lanzarAlertaExito("¡Ganaste! Juega de nuevo")};
-      }
+        if(!this.arrayPalabra.includes(this.letra))
+        {
+          this.intentos += 1;
+          this.intentosRestantes -= 1;
+          this.setImage(this.intentos);
+          if(this.perdio()){this.alerta.lanzarAlertaError("Te quedaste sin intentos. La palabra era "+this.palabra+".")}
+        }
+        else
+        {
+          this.setPalabraAux();
+          if(this.gano()){this.alerta.lanzarAlertaExito("¡Ganaste! Juega de nuevo")};
+        }
     }
+
+    }
+    
+    
   }
   setPalabraAux()
   {
@@ -99,14 +125,21 @@ export class AhorcadoComponent implements OnInit {
       this.alerta.lanzarAlertaExito("¡Ya ganaste! Juega de nuevo");
       retorno = true;
     }
-
     return retorno;
 
   }
   perdio(){
     
     let retorno: boolean;
-    this.intentosRestantes == 0 ? retorno = true : retorno = false;
+    if(this.intentosRestantes == 0){
+
+      retorno = true;
+      this.st.addPuntos(this.intentosRestantes + 1, 'Ahorcado', this.usuario);
+
+    }else{
+      retorno = false;
+
+    }
     return retorno;
   }
 
@@ -114,7 +147,14 @@ export class AhorcadoComponent implements OnInit {
   {
     const arrayPalabraAux = this.palabraAux.split('');
     let retorno: boolean;
-    !arrayPalabraAux.includes('_') ? retorno = true : retorno = false;
+    if(arrayPalabraAux.includes('_'))
+    {
+      retorno = false;
+      this.st.addPuntos(this.intentosRestantes + 1, 'Ahorcado', this.usuario);
+
+    }else{
+      retorno = true;
+    }
     return retorno;
   }
 }
