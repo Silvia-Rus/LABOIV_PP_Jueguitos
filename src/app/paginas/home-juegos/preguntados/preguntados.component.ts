@@ -13,18 +13,21 @@ import { HacerAnonSiNullPipe } from 'src/app/pipes/hacerAnonSiNull.pipe';
 })
 export class PreguntadosComponent implements OnInit {
 
-  preguntas: any;
   repetida: any[] = [];
   data: any;
   dataAux: any;
+
+  //opción correcta
   preguntaActual: any;
   contestacionActual: any;
-  i: any;
-  x: any[] = [];
+  src = '';
+
+  //opciones
+  i: any; //los índices de las opciones
   opciones: any[] = [];
   opcionesOrd: any;
+
   puntos = 0;
-  src = '';
   numPreguntas = 0;
   opcionElegida = '';
   peguntasHechas = 0;
@@ -105,6 +108,7 @@ export class PreguntadosComponent implements OnInit {
       this.puntos = 0;
       this.numPreguntas = 0;
       this.jugar=false;
+      this.repetida = [];
     }
   }
 
@@ -113,29 +117,34 @@ export class PreguntadosComponent implements OnInit {
     var aniadidos = 0;
     this.i = [];
     this.opciones = [];
-    
 
     do{
       const iAux = Math.floor(Math.random() * this.data.length);
-
       if(!this.i.includes(iAux) && 
-         !this.x.includes(iAux) &&
-         !this.opciones.includes(this.anon.transform(this.data[iAux].artist_title)))
+         !this.opciones.includes(this.anon.transform(this.data[iAux].artist_title)) &&
+         this.data[iAux].image_id != null)
       {
-        this.i.push(iAux);
-        this.opciones.push(this.anon.transform(this.data[iAux].artist_title));
-        aniadidos ++;
+        if(aniadidos == 0)
+        {
+          if(!this.repetida.includes(this.data[iAux].title)){
+            this.repetida.push(this.data[iAux].title);
+
+            this.i.push(iAux);
+            this.opciones.push(this.anon.transform(this.data[iAux].artist_title));
+            aniadidos ++;
+          } 
+        }
+        else
+        {
+          this.i.push(iAux);
+          this.opciones.push(this.anon.transform(this.data[iAux].artist_title));
+          aniadidos ++;
+        }
       }
-      
     }while(aniadidos < 3);
 
-   // this.listaItems = this.listaItemsNueva.sort((b:any, a: any) => +a.puntos - +b.puntos);
     this.opcionesOrd = this.opciones.sort();
-
-
   }
-
-
 
   test(){
     this.ngOnInit();
