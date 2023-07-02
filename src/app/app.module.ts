@@ -25,6 +25,8 @@ import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-men
 import { ChatComponent } from './paginas/chat/chat.component';
 import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 import { RankingComponent } from './paginas/ranking/ranking.component';
+import { PreguntadosComponent } from './paginas/home-juegos/preguntados/preguntados.component';
+import { HacerAnonSiNullPipe } from './pipes/hacerAnonSiNull.pipe';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdb_2sjAeTxACUYIitJ_EC_1ntf_M7qdM",
@@ -51,7 +53,8 @@ const firebaseConfig = {
     MayorMenorComponent,
     ChatComponent,
     EncuestaComponent,
-    RankingComponent 
+    RankingComponent,
+    PreguntadosComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,7 @@ const firebaseConfig = {
     CommonModule,
     // KeyboardEvent,
   ],
-  providers: [TecladoComponent],
+  providers: [TecladoComponent, HacerAnonSiNullPipe],
 
   bootstrap: [AppComponent]
 })

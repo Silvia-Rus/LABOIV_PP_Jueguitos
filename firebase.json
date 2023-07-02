@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "y",
+    "public": "dist/laboiv-tp-jueguitos",
     "ignore": [
       "firebase.json",
       "**/.*",

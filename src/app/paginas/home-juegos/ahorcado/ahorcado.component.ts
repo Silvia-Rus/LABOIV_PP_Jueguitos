@@ -51,10 +51,6 @@ export class AhorcadoComponent implements OnInit {
     this.puntos = -1;
   }
 
-  validadorLetra()
-  {
-
-  }
 
   nuevaPalabra() {
     this.servicio.getPalabra().subscribe((data) => {

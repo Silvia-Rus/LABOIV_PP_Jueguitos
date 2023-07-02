@@ -9,6 +9,7 @@ import { HomeJuegosComponent } from './paginas/home-juegos/home-juegos.component
 import { AhorcadoComponent } from './paginas/home-juegos/ahorcado/ahorcado.component';
 import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-menor.component';
+import { PreguntadosComponent } from './paginas/home-juegos/preguntados/preguntados.component';
 
 import { ChatComponent } from './paginas/chat/chat.component';
 import { RankingComponent } from './paginas/ranking/ranking.component';
@@ -29,6 +30,8 @@ const routes: Routes = [
   { path: 'home-juegos', component: HomeJuegosComponent },
   { path: 'ahorcado', component: AhorcadoComponent },
   { path: 'mayor-menor', component: MayorMenorComponent },
+  { path: 'preguntados', component: PreguntadosComponent },
+
   { path: 'chat', component: ChatComponent },
   { path: 'encuesta', component: EncuestaComponent },
   { path: 'ranking', component: RankingComponent },
