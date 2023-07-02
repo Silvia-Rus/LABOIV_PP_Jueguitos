@@ -23,6 +23,7 @@ import { TecladoComponent } from './componentes/teclado/teclado.component';
 import { CommonModule } from '@angular/common';
 import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-menor.component';
 import { ChatComponent } from './paginas/chat/chat.component';
+import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdb_2sjAeTxACUYIitJ_EC_1ntf_M7qdM",
@@ -47,7 +48,8 @@ const firebaseConfig = {
     AhorcadoComponent,
     TecladoComponent,
     MayorMenorComponent,
-    ChatComponent    
+    ChatComponent,
+    EncuestaComponent  
   ],
   imports: [
     BrowserModule,
