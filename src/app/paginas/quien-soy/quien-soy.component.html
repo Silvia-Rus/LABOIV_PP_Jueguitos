@@ -4,7 +4,14 @@
     <img class="rounded d-block mx-auto mb-4" src={{this.srcFoto}} alt="" height="175" width="175">
     <h1 class="display-5 fw-bold">¡Hola!</h1>
     <div class="col-lg-6 mx-auto ">
-      <p class="lead mb-4">Soy {{data.name}} y creé esta web de Jueguitos.<br> El nuevo jueguito todavía no pensé cómo será.</p>
+      <p class="lead mb-4">Soy {{data.name}} y creé esta web de Jueguitos.
+        <br> Puedes jugar al <a href="/ahorcado"> Ahorcado</a>, al <a href="/mayor-menor"> Mayor o Menor</a>, al <a href="/preguntados">Preguntados</a> o a la  <a href="/serpiente">Serpiente</a>.
+      </p>
+      <p>
+        La Serpiente consiste en ir moviendo la serpiente por la pantalla con las teclas de dirección del teclado con el propósito de comer el huevito. 
+        Con cada huevito que come, la serpiente se hace más grande. 
+        El juego termina cuando la serpiente se choca contra sí misma.
+      </p>
       <p class="lead mb-4">{{data.location}}.<br>
       <a class="lead mb-4 bi bi-github" href="https://github.com/{{data.login}}"></a> </p>       
     </div>
