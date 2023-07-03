@@ -2,7 +2,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Snake } from './snake';
 import { Direction } from './direction';
 import { Egg } from './egg';
-// import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/servicios/storage.service';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { AlertService } from 'src/app/servicios/alert.service';
+
 
 @Component({
   selector: 'app-snake-page',
@@ -11,9 +14,13 @@ import { Egg } from './egg';
 })
 export class SnakePageComponent implements OnInit {
 
-  constructor(
-            // public auth: AuthService
-            ) { }
+  constructor(private auth: AuthService,
+              private st: StorageService,
+              private alerta: AlertService
+              ) { }
+
+  usuario: any;
+  logueado = this.auth.getAuth();
 
   readonly size = 20;
   readonly gridSize = this.size * this.size;
@@ -34,6 +41,10 @@ export class SnakePageComponent implements OnInit {
   paused = false;
 
   ngOnInit() {
+    this.logueado.subscribe((res) => {
+      this.usuario = res?.email;
+      });
+
     this.doSpawnEgg();
     const runTime = () => {
       setTimeout(() => {
@@ -41,7 +52,9 @@ export class SnakePageComponent implements OnInit {
         this.dead = this.snake.checkDead();
         if (this.dead) {
           console.log(this.snake.tail.length + 1 - 3);
-          // this.auth.SetScore("snake",this.snake.tail.length + 1 - 3);
+          var puntos = this.snake.tail.length + 1 - 3;
+          this.st.addPuntos(puntos, 'Serpiente', this.usuario);
+          this.alerta.lanzarAlertaError('¡Ha perdido! Su puntuación ha sido de '+puntos+' puntos.')
         }
         this.time++;
         if (!this.dead) {
@@ -55,6 +68,7 @@ export class SnakePageComponent implements OnInit {
   doTogglePause() {
     this.paused = !this.paused;
   }
+
 
   doSpawnEgg() {
     this.egg = new Egg(this.gridSize, this.snake);

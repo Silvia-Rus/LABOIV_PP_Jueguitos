@@ -52,6 +52,7 @@ export class Snake {
   }
 
   goStep(size: number) {
+    
     const cell = this.head.pos;
     const latticeSize = size;
     if (this.dir === Direction.LEFT) {

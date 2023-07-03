@@ -6,13 +6,11 @@
     <div class="p-2 mb-2 bg-light rounded-3">
       <div class="container-fluid py-1">
         <div>
-          <h2>LA SERPIENTE</h2>
-          <p>En el juego, el jugador controla una larga y delgada criatura, semejante a una serpiente, que vaga alrededor de un plano delimitado, recogiendo alimentos (o algún otro elemento), tratando de evitar golpearse contra su propia cola. Cada vez que la serpiente se come un pedazo de comida, la cola crece más, provocando que aumente la dificultad del juego. El usuario controla la dirección de la cabeza de la serpiente (arriba, abajo, izquierda o derecha) y el cuerpo de la serpiente la sigue. Además, el jugador no puede detener el movimiento de la serpiente, mientras que el juego está en marcha.   
-          <p>
+            <h1 class="display-4 fw-normal mx-auto text-center">Serpiente</h1>
+            <p>
         </div>
       </div>
     </div>
-  
     <div class="row align-items">
   
     <div class="col-md-12">
@@ -25,33 +23,28 @@
                 </div>   
             </div>
             <div class="col-md-6">
+                <br><br><br>
                 <div>
                     Puntaje: {{this.snake.tail.length + 1 - 3}}
                 </div>
                 <div>
                     Tiempo de juego: {{this.time * this.timestep / 1000 | number:'1.0-0'}} s
                 </div>
+                <br>
+                <div *ngIf="!this.paused && !this.dead">
+                    <button type="button" style="width:40%" (click)="doTogglePause()" class="btn btn-warning">Pausar</button>
+                </div>
+                <div *ngIf="this.paused && !this.dead">
+                    <button type="button" style="width:40%" (click)="doTogglePause()" class="btn btn-success">Continuar</button>
+                </div>
+                <br>
+                <div *ngIf="this.dead">
+                    <button type="button" style="width:40%" (click)="playAgain()" class="btn btn-success">Jugar de Nuevo</button>
+                </div>
             </div>  
             </div>
         </div>
     </div>
-    <!-- <button (click)="doTogglePause()">Pausar</button> -->
-
-    <!-- <div class="col-md-6">
-        <div class="h-100 p-5 bg-light border rounded-3">
-            
-            <div *ngIf="dead">
-                <div class="alert alert-danger" role="alert">
-                    PERDISTE...
-                </div>
-                <button class="btn btn-primary" style="width:100%" (click)="playAgain()">JUGAR DE NUEVO</button>
-
-            </div>
-                
-        </div>
-    </div> -->
-  
-  
     </div>
   
   </div>
