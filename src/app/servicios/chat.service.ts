@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Message } from "../interfaces/message";
+import * as moment from 'moment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { Message } from "../interfaces/message";
 export class ChatService {
   private itemsCollection?: AngularFirestoreCollection<any>;
   public chats: Message[] = [];
+  public chatsOrd: Message[] = [];
   public userLog: any = {};
   elements: any;
 
@@ -30,6 +33,7 @@ export class ChatService {
       for (let chat of chats) {
         this.chats.unshift(chat);
       }
+      this.chatsOrd = this.chats.sort((b: any, a:any)=> +moment(b.date, 'D-M-YYYY HH:mm:ss').format('YYYYMMDDHHmm') - +moment(a.date, 'D-M-YYYY HH:mm:ss').format('YYYYMMDDHHmm'));
       this.elements = document.getElementById('app-message');
       if (this.elements != null) {
         this.elements.scrollTop = this.elements.scrollHeight;
