@@ -27,6 +27,7 @@ import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 import { RankingComponent } from './paginas/ranking/ranking.component';
 import { PreguntadosComponent } from './paginas/home-juegos/preguntados/preguntados.component';
 import { HacerAnonSiNullPipe } from './pipes/hacerAnonSiNull.pipe';
+import { SnakePageComponent } from './paginas/home-juegos/snake-page/snake-page.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdb_2sjAeTxACUYIitJ_EC_1ntf_M7qdM",
@@ -54,7 +55,8 @@ const firebaseConfig = {
     ChatComponent,
     EncuestaComponent,
     RankingComponent,
-    PreguntadosComponent
+    PreguntadosComponent,
+    SnakePageComponent
   ],
   imports: [
     BrowserModule,

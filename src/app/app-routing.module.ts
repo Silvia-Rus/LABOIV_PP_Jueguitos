@@ -10,6 +10,7 @@ import { AhorcadoComponent } from './paginas/home-juegos/ahorcado/ahorcado.compo
 import { EncuestaComponent } from './paginas/encuesta/encuesta.component';
 import { MayorMenorComponent } from './paginas/home-juegos/mayor-menor/mayor-menor.component';
 import { PreguntadosComponent } from './paginas/home-juegos/preguntados/preguntados.component';
+import { SnakePageComponent } from './paginas/home-juegos/snake-page/snake-page.component';
 
 import { ChatComponent } from './paginas/chat/chat.component';
 import { RankingComponent } from './paginas/ranking/ranking.component';
@@ -31,6 +32,8 @@ const routes: Routes = [
   { path: 'ahorcado', component: AhorcadoComponent },
   { path: 'mayor-menor', component: MayorMenorComponent },
   { path: 'preguntados', component: PreguntadosComponent },
+  { path: 'serpiente', component: SnakePageComponent },
+
 
   { path: 'chat', component: ChatComponent },
   { path: 'encuesta', component: EncuestaComponent },

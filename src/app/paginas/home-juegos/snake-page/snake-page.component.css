@@ -1,0 +1,7 @@
+.cells {
+    display: flex;
+    flex-wrap: wrap;
+}
+.cells .cell {
+    border: 1px solid #eee;
+}
