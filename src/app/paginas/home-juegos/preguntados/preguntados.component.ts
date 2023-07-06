@@ -49,17 +49,17 @@ export class PreguntadosComponent implements OnInit {
       })
 
     this.servicio.getPregunta().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.dataAux = data;
       this.data = this.dataAux.data;
       this.generar();
-      console.log(this.i);
+      // console.log(this.i);
       this.generarSrc();
       this.preguntaActual = this.data[this.i[0]].title;
       this.contestacionActual = this.anon.transform(this.data[this.i[0]].artist_title);
-      console.log(this.preguntaActual);
-      console.log(this.contestacionActual);
-      console.log(this.opciones);
+      // console.log(this.preguntaActual);
+      console.log("Respuesta correcta: "+this.contestacionActual);
+      // console.log(this.opciones);
     })
   }
 
@@ -70,7 +70,7 @@ export class PreguntadosComponent implements OnInit {
     var iiif_url = this.dataAux.config.iiif_url+'/';
     var sufijo = '/full/843,/0/default.jpg';
     this.src = iiif_url+image_id+sufijo;
-    console.log(this.src);
+    // console.log(this.src);
   }
 
   setOpcionElegida(opcion: any)
@@ -79,9 +79,7 @@ export class PreguntadosComponent implements OnInit {
   }
 
   responder()
-  {
-    console.log(this.opcionElegida);
-    
+  {    
     if(this.opcionElegida == this.contestacionActual){
       this.alerta.lanzarAlertaExito("¡Correcto!");
       this.puntos ++;
@@ -103,7 +101,7 @@ export class PreguntadosComponent implements OnInit {
   terminarJuego(){
     if(this.numPreguntas > 4)
     {
-      this.alerta.lanzarAlertaExito("Fin del juego. Tu puntaje ha sido de "+this.puntos);
+      this.alerta.lanzarAlertaComun("Fin del juego. Tu puntaje ha sido de "+this.puntos);
       this.st.addPuntos(this.puntos, 'Preguntados', this.usuario);
       this.puntos = 0;
       this.numPreguntas = 0;
@@ -120,7 +118,8 @@ export class PreguntadosComponent implements OnInit {
 
     do{
       const iAux = Math.floor(Math.random() * this.data.length);
-      if(!this.i.includes(iAux) && 
+      if(iAux != 4 && //el 4 del array falla ¿?
+         !this.i.includes(iAux) && 
          !this.opciones.includes(this.anon.transform(this.data[iAux].artist_title)) &&
          this.data[iAux].image_id != null)
       {
@@ -145,17 +144,5 @@ export class PreguntadosComponent implements OnInit {
 
     this.opcionesOrd = this.opciones.sort();
   }
-
-  test(){
-    this.ngOnInit();
-    // console.log(this.preguntas);
-    // for(var i of this.preguntas){
-    //   console.log(i.question);
-    //   console.log(i.correct_answer);
-
-    //   console.log(i);
-    // }
-  }
-
 
 }

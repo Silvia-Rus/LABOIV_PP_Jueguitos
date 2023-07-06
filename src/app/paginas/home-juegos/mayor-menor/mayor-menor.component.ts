@@ -37,7 +37,7 @@ export class MayorMenorComponent implements OnInit {
       this.cartas.getCarta().subscribe((data: any) => {
         this.guardarCarta(data.cards[0]);
         resolve(data);
-        console.log("getCarta: "+data.cards[0].value);
+        //console.log("getCarta: "+data.cards[0].value);
       });
     });
   }
@@ -89,8 +89,9 @@ export class MayorMenorComponent implements OnInit {
   }
 
   pierde(){
-    this.alerta.lanzarAlertaError("Perdiste la partida. Tus puntos fueron: "+this.puntos+".");
+    this.alerta.lanzarAlertaComun("Perdiste la partida. Tus puntos fueron: "+this.puntos+".");
     this.st.addPuntos(this.puntos, 'Mayor o Menor', this.usuario);
+    this.imagenCartaVieja = '';
     this.puntos = 0;
   }
 

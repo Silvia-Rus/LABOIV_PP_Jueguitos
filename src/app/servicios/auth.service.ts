@@ -24,7 +24,6 @@ export class AuthService {
       this.router.navigate(['/home']);
       this.alerta.lanzarAlertaExito('¡Holi '+user.user?.email+'!');
       this.storage.grabarLog(email);
-      console.log(this.storage.getNombre(email))
     }).catch((error) => {
       this.alerta.lanzarAlertaError(this.error(error.code));        
       });

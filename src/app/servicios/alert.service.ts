@@ -29,4 +29,13 @@ constructor() {
  {
   this.lanzarAlerta('error', texto);
  }
+
+ lanzarAlertaComun(texto: String)
+ {
+  Swal.fire({
+    icon: 'info',
+    title: texto,
+    confirmButtonColor: '#198754'
+  })
+ }
 }

@@ -36,22 +36,8 @@ export class TecladoComponent implements OnInit {
     });
   }
 
-  // onChange = (input: string) => {
-  //   this.value = input;
-  //   console.log("Input changed", input);
-  // };
-
-  ocultarLetra = (letra: string) => {
-    this.keyboard.excludeFromLayout()
-  }
   onKeyPress = (button: string) => {
-    console.log("Button pressed", button);
     this.letra.emit(button);
-
-    /**
-     * If you want to handle the shift and caps lock buttons
-     */
-    // if (button === "{shift}" || button === "{lock}") this.handleShift();
   };
 
   onInputChange = (event: any) => {

@@ -69,30 +69,22 @@ export class AhorcadoComponent implements OnInit {
 
   setLetra(letra: string)
   {
-    if(this.letrasUsada.includes(letra)){
-      this.alerta.lanzarAlertaError('Esta letra ya ha sido usada');
-    }else{
-      this.letra = letra;
-      this.letrasUsada.push(this.letra);
-      if(!this.ganoOPerdio())
+      if(!this.ganoOPerdio() && !this.letraRepetida(letra))
       {
         if(!this.arrayPalabra.includes(this.letra))
         {
           this.intentos += 1;
           this.intentosRestantes -= 1;
           this.setImage(this.intentos);
-          if(this.perdio()){this.alerta.lanzarAlertaError("Te quedaste sin intentos. La palabra era "+this.palabra+".")}
+          if(this.perdio()){this.alerta.lanzarAlertaComun("Te quedaste sin intentos. La palabra era: "+this.palabra+".")}
         }
         else
         {
           this.setPalabraAux();
-          if(this.gano()){this.alerta.lanzarAlertaExito("¡Ganaste! Juega de nuevo")};
+          if(this.gano()){this.alerta.lanzarAlertaComun("¡Ganaste! Juega de nuevo")};
         }
-    }
-
-    }
     
-    
+    }
   }
   setPalabraAux()
   {
@@ -113,16 +105,36 @@ export class AhorcadoComponent implements OnInit {
 
     if(this.perdio())
     {
-      this.alerta.lanzarAlertaError("Te quedaste sin intentos. Prueba de nuevo.");
+      // this.alerta.lanzarAlertaError("Te quedaste sin intentos. Prueba de nuevo.");
+      this.alerta.lanzarAlertaComun("Te quedaste sin intentos. Prueba de nuevo.");
       retorno = true;
     }
     if(this.gano())
     {
-      this.alerta.lanzarAlertaExito("¡Ya ganaste! Juega de nuevo");
+      //this.alerta.lanzarAlertaExito("¡Ya ganaste! Juega de nuevo");
+      this.alerta.lanzarAlertaComun("¡Ya ganaste! Juega de nuevo");
+
       retorno = true;
     }
     return retorno;
+  }
 
+  letraRepetida(letra: any)
+  {
+    var retorno = true;
+    if(this.letrasUsada.includes(letra))
+    {
+      this.alerta.lanzarAlertaError('Esta letra ya ha sido usada');
+      retorno = true;
+    }
+    else
+    {
+      this.letra = letra;
+      this.letrasUsada.push(this.letra);
+      retorno = false;
+    }
+
+    return retorno;
   }
   perdio(){
     
