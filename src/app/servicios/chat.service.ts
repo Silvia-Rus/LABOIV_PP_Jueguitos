@@ -33,7 +33,7 @@ export class ChatService {
       for (let chat of chats) {
         this.chats.unshift(chat);
       }
-      this.chatsOrd = this.chats.sort((b: any, a:any)=> +moment(b.date, 'D-M-YYYY HH:mm:ss').format('YYYYMMDDHHmm') - +moment(a.date, 'D-M-YYYY HH:mm:ss').format('YYYYMMDDHHmm'));
+      this.chatsOrd = this.chats.sort((b: any, a:any)=> +moment(b.date, 'D-M-YYYY HH:mm:ss').format('YYYYMMDDHHmmss') - +moment(a.date, 'D-M-YYYY HH:mm:ss').format('YYYYMMDDHHmmss'));
       this.elements = document.getElementById('app-message');
       if (this.elements != null) {
         this.elements.scrollTop = this.elements.scrollHeight;

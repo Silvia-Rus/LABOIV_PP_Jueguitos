@@ -59,9 +59,8 @@ export class EncuestaComponent implements OnInit {
                             this.form.value.recomendaria,
                             this.form.value.comentario,
                             this.usuario)
-    console.log(this.encuesta);
+    // console.log(this.encuesta);
     this.st.addEncuesta(this.encuesta);
-
   }
 
 

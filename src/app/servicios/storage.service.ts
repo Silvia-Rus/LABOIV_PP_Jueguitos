@@ -53,7 +53,7 @@ export class StorageService {
     this.db.collection('encuestas').add(encuesta)
     .then(()=> {
       this.alerta.lanzarAlertaExito('¡Encuesta grabada con éxito!');
-      this.router.navigate(['/home-juegos']);
+      this.router.navigate(['/home']);
     }).catch((error) => {
       this.alerta.lanzarAlertaError(error);        
       }); 
